@@ -2,6 +2,7 @@ package com.example.userlist.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+val ImageLogoColor = Color(0xFFC1C8D7)
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
