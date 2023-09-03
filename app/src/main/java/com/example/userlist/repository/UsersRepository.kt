@@ -1,7 +1,5 @@
 package com.example.userlist.repository
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.userlist.api.UsersApi
 import com.example.userlist.common.Resource
 import com.example.userlist.model.User
@@ -12,7 +10,6 @@ import javax.inject.Inject
 
 class UsersRepository @Inject constructor(private val api: UsersApi) {
 
-    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun getUsers(): Resource<List<User>> =
         try {
             val users = api.getUsers().results.map { userDto ->

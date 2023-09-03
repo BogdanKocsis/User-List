@@ -1,7 +1,6 @@
 package com.example.userlist.model.dto
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+
 import com.example.userlist.common.Utils
 import com.example.userlist.model.User
 
@@ -17,7 +16,6 @@ data class UserDto(
     val picture: Picture
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun UserDto.toUser() = User(
     name = name.first + " " + name.last,
     age = dob.age,
