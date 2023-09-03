@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">User List</string>
     <string name="please_try_again_later">Please, try again later.</string>
+    <string name="users">Users\n</string>
 </resources>
