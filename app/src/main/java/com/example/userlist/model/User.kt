@@ -4,5 +4,6 @@ data class User(
     val name: String,
     val age: Int,
     val country: String,
-    val imageUrl: String
+    val imageUrl: String,
+    val hour: String
 )
