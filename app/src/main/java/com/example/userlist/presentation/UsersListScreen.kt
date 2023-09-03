@@ -88,11 +88,9 @@ fun UsersListScreen(
                     }
                 }) { padding ->
                     Column(modifier = Modifier.padding(padding)) {
-                        UsersList(usersList = resource.data)
+                        UsersList(usersList = resource.data) { viewModel.loadNextPage() }
                     }
-
                 }
-
             }
         }
     }

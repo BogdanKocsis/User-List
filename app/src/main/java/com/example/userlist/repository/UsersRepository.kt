@@ -10,9 +10,9 @@ import javax.inject.Inject
 
 class UsersRepository @Inject constructor(private val api: UsersApi) {
 
-    suspend fun getUsers(): Resource<List<User>> =
+    suspend fun getUsers(page:Int): Resource<List<User>> =
         try {
-            val users = api.getUsers().results.map { userDto ->
+            val users = api.getUsers(page).results.map { userDto ->
                 userDto.toUser()
             }
             Resource.Success(users)
