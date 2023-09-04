@@ -17,12 +17,13 @@ import javax.inject.Inject
 class UsersListViewModel @Inject constructor(private val usersRepository: UsersRepository) :
     ViewModel() {
 
+    private val _usersList: MutableList<User> = mutableListOf()
     private val _stateFlow: MutableStateFlow<Resource<List<User>>> =
         MutableStateFlow(Resource.Loading)
     val stateFlow: StateFlow<Resource<List<User>>> = _stateFlow.asStateFlow()
 
-    private var currentPage = 1
-    private val maxPages = 3
+    private var currentPage = 0
+    private val maxPages = 2
 
     init {
         getUserList()
@@ -32,7 +33,13 @@ class UsersListViewModel @Inject constructor(private val usersRepository: UsersR
     private fun getUserList() {
         viewModelScope.launch {
             val users = usersRepository.getUsers(currentPage)
-            _stateFlow.value = users
+            if (users is Resource.Success) {
+                _usersList.addAll(users.data)
+                _stateFlow.value = Resource.Success(_usersList.toList())
+            } else {
+                _stateFlow.value = users
+            }
+
         }
     }
 

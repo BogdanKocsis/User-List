@@ -7,11 +7,6 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Divider
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.userlist.model.User
@@ -23,8 +18,7 @@ fun UsersList(
     LoadNextPage: () -> Unit
 ) {
     val lazyListState = rememberLazyListState()
-    val maxVisibleIndex = usersList.size - 3
-    var hasLoadedNextPage by remember { mutableStateOf(false) }
+    val maxVisibleIndex = usersList.size - 4
 
     LazyColumn(
         state = lazyListState,
@@ -39,13 +33,8 @@ fun UsersList(
             )
             Divider(thickness = 1.dp, color = PostColor)
 
-            if (index == maxVisibleIndex && !hasLoadedNextPage) {
-                hasLoadedNextPage = true
+            if (index == maxVisibleIndex) {
                 LoadNextPage()
-                LaunchedEffect(Unit) {
-                    lazyListState.scrollToItem(index = 0)
-                }
-                hasLoadedNextPage = false
             }
         }
     }
